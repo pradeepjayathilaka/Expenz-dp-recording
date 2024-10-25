@@ -1,5 +1,7 @@
 import 'package:expenz/constants/colors.dart';
 import 'package:expenz/constants/constants.dart';
+import 'package:expenz/screens/main_screen.dart';
+import 'package:expenz/services/user_services.dart';
 import 'package:expenz/widgets/custome_button.dart';
 import 'package:flutter/material.dart';
 
@@ -170,7 +172,7 @@ class _UserDataScreenState extends State<UserDataScreen> {
                           height: 30,
                         ),
                         GestureDetector(
-                          onTap: () {
+                          onTap: () async {
                             if (_formKey.currentState!.validate()) {
                               //if the form is valid then navigate to the next page
                               String userName = _userNameController.text;
@@ -179,8 +181,24 @@ class _UserDataScreenState extends State<UserDataScreen> {
                               String confirmPassword =
                                   _confirmPasswordController.text;
 
-                              print(
-                                  "$userName $email $password $confirmPassword");
+                              //save the user name na email in the device storage
+                              await UserServices.storeUserDetails(
+                                  context: context,
+                                  userName: userName,
+                                  email: email,
+                                  password: password,
+                                  confirmPassword: confirmPassword);
+                              //navigate to the main screen
+                              if (context.mounted) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return MainScreen();
+                                    },
+                                  ),
+                                );
+                              }
                             }
                           },
                           child: CustomeButton(
