@@ -2,40 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserServices {
-  //method to store the user name and user email in the shared preferences
-  static Future<void> storeUserDetails(
-      {required BuildContext context,
-      required userName,
-      required String email,
-      required String password,
-      required String confirmPassword}) async {
-    //check weather the user entered password and  the confirm password are the same
-
-    //if the users password and confirm password are same then store the users name and email iin the shRED PREFERENCES
-
+  static Future<bool> storeUserDetails({
+    required BuildContext context,
+    required String userName,
+    required String email,
+    required String password,
+    required String confirmPassword,
+  }) async {
     try {
-      if (password != confirmPassword) {
-        //show the massage to the user
+      // Check if password and confirmPassword match
+      if (password.trim() != confirmPassword.trim()) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text("password and confirm password do not match"),
-          ),
+          SnackBar(content: Text("Password and confirm password do not match")),
         );
-        return;
+        return false; // Passwords don't match
       }
-      //create and instance from sheared preferences
+
+      // Save user details if passwords match
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      //store the user name and email as key value pairs
       await prefs.setString("username", userName);
       await prefs.setString("email", email);
-      //show a message to the user
+
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("User details stored successfully"),
-        ),
+        SnackBar(content: Text("User details stored successfully")),
       );
+      return true; // Success
     } catch (err) {
-      err.toString();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("An error occurred: ${err.toString()}")),
+      );
+      return false; // Error
     }
   }
 }

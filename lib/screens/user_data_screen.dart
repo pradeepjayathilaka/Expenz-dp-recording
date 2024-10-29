@@ -13,18 +13,14 @@ class UserDataScreen extends StatefulWidget {
 }
 
 class _UserDataScreenState extends State<UserDataScreen> {
-  //for the check box
   bool _rememberMe = false;
-
-  //form key for the form validation
   final _formKey = GlobalKey<FormState>();
-
-  //controller for the text form fields
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+
   @override
   void dispose() {
     _userNameController.dispose();
@@ -34,6 +30,7 @@ class _UserDataScreenState extends State<UserDataScreen> {
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
@@ -45,169 +42,114 @@ class _UserDataScreenState extends State<UserDataScreen> {
               children: [
                 Text(
                   "Enter your \n Personal details",
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
                 ),
-                SizedBox(
-                  height: 30,
-                ),
+                SizedBox(height: 30),
                 Form(
-                    key: _formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        //form feild for the user name;
-                        TextFormField(
-                          controller: _userNameController,
-                          validator: (value) {
-                            //check wether the user entered the name or not
-                            if (value!.isEmpty) {
-                              return 'Please enter your name';
-                            } else {
-                              return null;
-                            }
-                          },
-                          decoration: InputDecoration(
-                            hintText: 'Name',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            contentPadding: EdgeInsets.all(20),
-                          ),
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextFormField(
+                        controller: _userNameController,
+                        validator: (value) =>
+                            value!.isEmpty ? 'Please enter your name' : null,
+                        decoration: InputDecoration(
+                          hintText: 'Name',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                          contentPadding: EdgeInsets.all(20),
                         ),
-                        SizedBox(
-                          height: 30,
+                      ),
+                      SizedBox(height: 30),
+                      TextFormField(
+                        controller: _emailController,
+                        validator: (value) =>
+                            value!.isEmpty ? 'Please enter your email' : null,
+                        decoration: InputDecoration(
+                          hintText: 'Email',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                          contentPadding: EdgeInsets.all(20),
                         ),
-                        //form feild for the user Email;
-                        TextFormField(
-                          controller: _emailController,
-                          validator: (value) {
-                            //check wether the user entered the email or not
-                            if (value!.isEmpty) {
-                              return 'Please enter your email';
-                            }
-                          },
-                          decoration: InputDecoration(
-                            hintText: 'Email',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            contentPadding: EdgeInsets.all(20),
-                          ),
+                      ),
+                      SizedBox(height: 30),
+                      TextFormField(
+                        controller: _passwordController,
+                        validator: (value) => value!.isEmpty
+                            ? 'Please enter a valid password'
+                            : null,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          hintText: 'Password',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                          contentPadding: EdgeInsets.all(20),
                         ),
-                        SizedBox(
-                          height: 30,
+                      ),
+                      SizedBox(height: 30),
+                      TextFormField(
+                        controller: _confirmPasswordController,
+                        obscureText: true,
+                        validator: (value) => value!.isEmpty
+                            ? 'Please enter the same password'
+                            : null,
+                        decoration: InputDecoration(
+                          hintText: 'Confirm Password',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                          contentPadding: EdgeInsets.all(20),
                         ),
-                        //form feild for the user password;
-                        TextFormField(
-                          controller: _passwordController,
-                          validator: (value) {
-                            //check wether the user entered the password or not
-                            if (value!.isEmpty) {
-                              return 'Please enter a valid password';
-                            }
-                          },
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            hintText: 'Password',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            contentPadding: EdgeInsets.all(20),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        //form feild for the user password;
-                        TextFormField(
-                          controller: _confirmPasswordController,
-                          obscureText: true,
-                          validator: (value) {
-                            //check wether the user entered the password or not
-                            if (value!.isEmpty) {
-                              return 'Please enter the  same password';
-                            }
-                          },
-                          decoration: InputDecoration(
-                            hintText: 'Confirm Password',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            contentPadding: EdgeInsets.all(20),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        //remember me for the next
-                        Row(
-                          children: [
-                            Text(
-                              "Remember Me for the next time",
-                              style: TextStyle(
+                      ),
+                      SizedBox(height: 30),
+                      Row(
+                        children: [
+                          Text(
+                            "Remember Me for the next time",
+                            style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
-                                color: kGrey,
-                              ),
-                            ),
-                            Expanded(
-                              child: CheckboxListTile(
-                                activeColor: kMainColor,
-                                value: _rememberMe,
-                                onChanged: (value) {
-                                  setState(
-                                    () {
-                                      _rememberMe = value!;
-                                    },
-                                  );
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        GestureDetector(
-                          onTap: () async {
-                            if (_formKey.currentState!.validate()) {
-                              //if the form is valid then navigate to the next page
-                              String userName = _userNameController.text;
-                              String email = _emailController.text;
-                              String password = _passwordController.text;
-                              String confirmPassword =
-                                  _confirmPasswordController.text;
-
-                              //save the user name na email in the device storage
-                              await UserServices.storeUserDetails(
-                                  context: context,
-                                  userName: userName,
-                                  email: email,
-                                  password: password,
-                                  confirmPassword: confirmPassword);
-                              //navigate to the main screen
-                              if (context.mounted) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return MainScreen();
-                                    },
-                                  ),
-                                );
-                              }
-                            }
-                          },
-                          child: CustomeButton(
-                            buttonName: "Next",
-                            buttonColor: kMainColor,
+                                color: kGrey),
                           ),
-                        )
-                      ],
-                    ))
+                          Expanded(
+                            child: CheckboxListTile(
+                              activeColor: kMainColor,
+                              value: _rememberMe,
+                              onChanged: (value) =>
+                                  setState(() => _rememberMe = value!),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 30),
+                      GestureDetector(
+                        onTap: () async {
+                          if (_formKey.currentState!.validate()) {
+                            bool success = await UserServices.storeUserDetails(
+                              context: context,
+                              userName: _userNameController.text,
+                              email: _emailController.text,
+                              password: _passwordController.text,
+                              confirmPassword: _confirmPasswordController.text,
+                            );
+                            // Navigate to MainScreen only if user details were stored successfully
+                            if (success && context.mounted) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MainScreen()),
+                              );
+                            }
+                          }
+                        },
+                        child: CustomeButton(
+                          buttonName: "Next",
+                          buttonColor: kMainColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
