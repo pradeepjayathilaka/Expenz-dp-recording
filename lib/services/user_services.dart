@@ -34,4 +34,12 @@ class UserServices {
       return false; // Error
     }
   }
+
+  //method to check weather the username is saved in the share
+  static Future<bool> checkUsername() async {
+    //create an instance of shared preferences
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userName = prefs.getString('username');
+    return userName != null;
+  }
 }
