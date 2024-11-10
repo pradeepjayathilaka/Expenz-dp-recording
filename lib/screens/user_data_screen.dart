@@ -40,11 +40,11 @@ class _UserDataScreenState extends State<UserDataScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   "Enter your \n Personal details",
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 Form(
                   key: _formKey,
                   child: Column(
@@ -58,10 +58,10 @@ class _UserDataScreenState extends State<UserDataScreen> {
                           hintText: 'Name',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15)),
-                          contentPadding: EdgeInsets.all(20),
+                          contentPadding: const EdgeInsets.all(20),
                         ),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       TextFormField(
                         controller: _emailController,
                         validator: (value) =>
@@ -70,10 +70,10 @@ class _UserDataScreenState extends State<UserDataScreen> {
                           hintText: 'Email',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15)),
-                          contentPadding: EdgeInsets.all(20),
+                          contentPadding: const EdgeInsets.all(20),
                         ),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       TextFormField(
                         controller: _passwordController,
                         validator: (value) => value!.isEmpty
@@ -84,10 +84,10 @@ class _UserDataScreenState extends State<UserDataScreen> {
                           hintText: 'Password',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15)),
-                          contentPadding: EdgeInsets.all(20),
+                          contentPadding: const EdgeInsets.all(20),
                         ),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       TextFormField(
                         controller: _confirmPasswordController,
                         obscureText: true,
@@ -98,13 +98,13 @@ class _UserDataScreenState extends State<UserDataScreen> {
                           hintText: 'Confirm Password',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15)),
-                          contentPadding: EdgeInsets.all(20),
+                          contentPadding: const EdgeInsets.all(20),
                         ),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       Row(
                         children: [
-                          Text(
+                          const Text(
                             "Remember Me for the next time",
                             style: TextStyle(
                                 fontSize: 16,
@@ -121,7 +121,7 @@ class _UserDataScreenState extends State<UserDataScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       GestureDetector(
                         onTap: () async {
                           if (_formKey.currentState!.validate()) {
@@ -137,12 +137,12 @@ class _UserDataScreenState extends State<UserDataScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => MainScreen()),
+                                    builder: (context) => const MainScreen()),
                               );
                             }
                           }
                         },
-                        child: CustomeButton(
+                        child: const CustomeButton(
                           buttonName: "Next",
                           buttonColor: kMainColor,
                         ),

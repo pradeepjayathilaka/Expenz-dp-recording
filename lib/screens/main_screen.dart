@@ -19,11 +19,11 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     //screen List
     final List<Widget> pages = [
-      AddNewScreen(),
-      HomeScreen(),
-      TransactionScreen(),
-      BudgetScreen(),
-      ProfileScreen(),
+      const AddNewScreen(),
+      const HomeScreen(),
+      const TransactionScreen(),
+      const BudgetScreen(),
+      const ProfileScreen(),
     ];
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
@@ -34,7 +34,6 @@ class _MainScreenState extends State<MainScreen> {
         onTap: (index) {
           setState(() {
             _currentIndex = index;
-            print(_currentIndex);
           });
         },
         unselectedItemColor: kGrey,
@@ -43,22 +42,22 @@ class _MainScreenState extends State<MainScreen> {
           fontWeight: FontWeight.w500,
         ),
         items: [
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.list_rounded),
             label: 'Transactions',
           ),
           BottomNavigationBarItem(
             icon: Container(
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
+              padding: const EdgeInsets.all(10),
+              decoration: const BoxDecoration(
                 color: kMainColor,
                 shape: BoxShape.circle,
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.add,
                 color: kWhite,
                 size: 30,
@@ -66,11 +65,11 @@ class _MainScreenState extends State<MainScreen> {
             ),
             label: '',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.rocket),
             label: 'Budget',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'profile',
           ),

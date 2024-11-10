@@ -21,10 +21,10 @@ final Map<ExpenseCategory, String> expenceCategoryImages = {
 //categories colors
 final Map<ExpenseCategory, Color> expenseCategoryColors = {
   ExpenseCategory.food: const Color(0xFFE57373),
-  ExpenseCategory.food: const Color(0xff81c784),
-  ExpenseCategory.food: const Color(0xFF64b5f6),
-  ExpenseCategory.food: const Color(0xFFffd54f),
-  ExpenseCategory.food: const Color(0xFF9575cd),
+  ExpenseCategory.transport: const Color(0xff81c784),
+  ExpenseCategory.health: const Color(0xFF64b5f6),
+  ExpenseCategory.shopping: const Color(0xFFffd54f),
+  ExpenseCategory.subscription: const Color(0xFF9575cd),
 };
 
 //model for expense

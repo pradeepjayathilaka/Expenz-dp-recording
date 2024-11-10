@@ -29,11 +29,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     if (showDetailsPage) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => UserDataScreen()),
+        MaterialPageRoute(builder: (context) => const UserDataScreen()),
       );
     } else {
       _controller.nextPage(
-        duration: Duration(milliseconds: 400),
+        duration: const Duration(milliseconds: 400),
         curve: Curves.easeInOut,
       );
     }
@@ -43,7 +43,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.all(kDefaultPadding),
+        padding: const EdgeInsets.all(kDefaultPadding),
         child: Column(
           children: [
             Expanded(
@@ -57,7 +57,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       });
                     },
                     children: [
-                      FontPage(),
+                      const FontPage(),
                       SharedOnboardingScreen(
                         imagepath:
                             OnboardingData.onboardingDataList[0].imagePath,

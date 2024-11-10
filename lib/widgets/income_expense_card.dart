@@ -22,9 +22,10 @@ class IncomeExpenseCard extends StatefulWidget {
 class _IncomeExpenseCardState extends State<IncomeExpenseCard> {
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
     return Container(
-      width: MediaQuery.of(context).size.width * 0.45,
-      height: MediaQuery.of(context).size.height * 0.11,
+      width: mediaQuery.size.width * 0.45,
+      height: mediaQuery.size.height * 0.11,
       decoration: BoxDecoration(
         color: widget.bgcolor,
         borderRadius: BorderRadius.circular(20),
@@ -34,7 +35,7 @@ class _IncomeExpenseCardState extends State<IncomeExpenseCard> {
         child: Row(
           children: [
             Container(
-              height: MediaQuery.of(context).size.height * 0.15,
+              height: 60.0, // or any other fixed height value
               width: MediaQuery.of(context).size.width * 0.15,
               decoration: BoxDecoration(
                 color: kWhite,
@@ -47,14 +48,14 @@ class _IncomeExpenseCardState extends State<IncomeExpenseCard> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Column(
               children: [
                 Text(
                   widget.title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: kWhite,
                     fontSize: 17,
                     fontWeight: FontWeight.w500,
@@ -62,7 +63,7 @@ class _IncomeExpenseCardState extends State<IncomeExpenseCard> {
                 ),
                 Text(
                   " \$ ${widget.amount.toStringAsFixed(0)}",
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: kWhite,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

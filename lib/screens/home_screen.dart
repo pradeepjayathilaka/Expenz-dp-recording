@@ -29,90 +29,94 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: SingleChildScrollView(
-        //main column
-        child: Column(
-          children: [
-            //bg color col
-            Container(
-              height: MediaQuery.of(context).size.height * 0.3,
-              decoration: BoxDecoration(
-                color: kMainColor.withOpacity(0.15),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(30),
-                  bottomRight: Radius.circular(30),
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(kDefaultPadding),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Builder(
+      builder: (context) {
+        return Scaffold(
+          body: SafeArea(
+              child: SingleChildScrollView(
+            //main column
+            child: Column(
+              children: [
+                //bg color col
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  decoration: BoxDecoration(
+                    color: kMainColor.withOpacity(0.15),
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(kDefaultPadding),
+                    child: Column(
                       children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: kMainColor,
-                            border: Border.all(
-                              color: kMainColor,
-                              width: 3,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: kMainColor,
+                                border: Border.all(
+                                  color: kMainColor,
+                                  width: 3,
+                                ),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(100),
+                                child: Image.asset(
+                                  'assets/images/user.jpg',
+                                  width: 50,
+                                  height: 50,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(100),
-                            child: Image.asset(
-                              'assets/images/user.jpg',
-                              width: 50,
-                              height: 50,
-                              fit: BoxFit.cover,
+                            const SizedBox(width: 20),
+                            Text(
+                              "Welcome $username",
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
+                            const SizedBox(width: 20),
+                            IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.notifications,
+                                color: kMainColor,
+                                size: 30,
+                              ),
+                            )
+                          ],
                         ),
-                        SizedBox(width: 20),
-                        Text(
-                          "Welcome $username",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        SizedBox(width: 20),
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.notifications,
-                            color: kMainColor,
-                            size: 30,
-                          ),
+                        const SizedBox(height: 20),
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            IncomeExpenseCard(
+                                title: "Income",
+                                amount: 1200,
+                                imageUrl: "assets/images/income.png",
+                                bgcolor: kGreen),
+                            IncomeExpenseCard(
+                                title: "Expense",
+                                amount: 2300,
+                                imageUrl: "assets/images/expense.png",
+                                bgcolor: kRed),
+                          ],
                         )
                       ],
                     ),
-                    SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IncomeExpenseCard(
-                            title: "Income",
-                            amount: 1200,
-                            imageUrl: "assets/images/income.png",
-                            bgcolor: kGreen),
-                        IncomeExpenseCard(
-                            title: "Expense",
-                            amount: 2300,
-                            imageUrl: "assets/images/expense.png",
-                            bgcolor: kRed),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            )
-          ],
-        ),
-      )),
+                  ),
+                )
+              ],
+            ),
+          )),
+        );
+      },
     );
   }
 }

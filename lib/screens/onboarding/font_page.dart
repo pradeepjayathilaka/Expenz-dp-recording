@@ -14,7 +14,7 @@ class FontPage extends StatelessWidget {
           width: 100,
           fit: BoxFit.cover,
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         const Center(
