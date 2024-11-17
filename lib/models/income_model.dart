@@ -42,4 +42,29 @@ class IncomeModel {
     required this.time,
     required this.description,
   });
+
+  //convert the Income object in to a JSON object(seriliation)
+  Map<String, dynamic> toJSON() {
+    return {
+      'id': id,
+      'title': title,
+      'amount': amount,
+      'category': category.index,
+      'date': date.toIso8601String(),
+      'time': time.toIso8601String(),
+      'description': description,
+    };
+  }
+
+  //create income object form a json object(derilisation)
+  factory IncomeModel.formJSON(Map<String, dynamic> json) {
+    return IncomeModel(
+        id: json['id'],
+        title: json['title'],
+        amount: json['amount'],
+        category: IncomeCategory.values[json['category']],
+        date: DateTime.parse(json['date']),
+        time: DateTime.parse(json['times']),
+        description: json['description']);
+  }
 }
