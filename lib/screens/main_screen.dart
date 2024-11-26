@@ -1,11 +1,13 @@
 import 'package:expenz/constants/colors.dart';
 import 'package:expenz/models/expens_model.dart';
+import 'package:expenz/models/income_model.dart';
 import 'package:expenz/screens/add_new_screen.dart';
 import 'package:expenz/screens/budget_screen.dart';
 import 'package:expenz/screens/home_screen.dart';
 import 'package:expenz/screens/profile_screen.dart';
 import 'package:expenz/screens/transactions_screen.dart';
 import 'package:expenz/services/expense_service.dart';
+import 'package:expenz/services/income_service.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -18,6 +20,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
   List<Expense> expenseList = [];
+  List<IncomeModel> incomeList = [];
 
   //Function to fetch expences
   void fetchAllExpenses() async {
@@ -25,6 +28,15 @@ class _MainScreenState extends State<MainScreen> {
     setState(() {
       expenseList = loadedExpenses;
       print(expenseList.length);
+    });
+  }
+
+  //Function to fetch income
+  void fetchAllIncome() async {
+    List<IncomeModel> loadedIncome = await IncomeService().loadIncome();
+    setState(() {
+      incomeList = loadedIncome;
+      print(incomeList.length);
     });
   }
 
@@ -37,12 +49,23 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
+  //function to add a new income
+  void addNewIncome(IncomeModel newIncome) {
+    IncomeService().saveIncome(newIncome, context);
+    //Update the List of income
+    setState(() {
+      incomeList.add(newIncome);
+      print(incomeList.length);
+    });
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     setState(() {
       fetchAllExpenses();
+      fetchAllIncome();
     });
   }
 
@@ -54,6 +77,7 @@ class _MainScreenState extends State<MainScreen> {
       const TransactionScreen(),
       AddNewScreen(
         addExpense: addNewExpense,
+        addIncome: addNewIncome,
       ),
       const BudgetScreen(),
       const ProfileScreen(),
