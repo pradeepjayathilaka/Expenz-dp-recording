@@ -50,12 +50,20 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   //function to add a new income
-  void addNewIncome(IncomeModel newIncome) {
-    IncomeService().saveIncome(newIncome, context);
+  void addNewIncome(IncomeModel newIncome) async {
+    await IncomeService().saveIncome(newIncome, context);
     //Update the List of income
     setState(() {
       incomeList.add(newIncome);
-      print(incomeList.length);
+    });
+  }
+
+  //function to remove an expense
+  void removeExpense(Expense expense) {
+    ExpenseService().deleteExpense(expense.id, context);
+    //Update the List of expenses
+    setState(() {
+      expenseList.remove(expense);
     });
   }
 
@@ -73,8 +81,11 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     //screen List
     final List<Widget> pages = [
+      TransactionScreen(
+        expenseList: expenseList,
+        onDismissedExpenses: removeExpense,
+      ),
       const HomeScreen(),
-      const TransactionScreen(),
       AddNewScreen(
         addExpense: addNewExpense,
         addIncome: addNewIncome,
