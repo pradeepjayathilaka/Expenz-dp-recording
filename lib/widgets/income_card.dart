@@ -1,16 +1,16 @@
-import 'package:expenz/constants/colors.dart';
-import 'package:expenz/models/expens_model.dart';
 import 'package:flutter/material.dart';
+import 'package:expenz/constants/colors.dart';
+import 'package:expenz/models/income_model.dart';
 import 'package:intl/intl.dart';
 
-class ExpenseCard extends StatelessWidget {
+class IncomeCard extends StatelessWidget {
   final String title;
   final DateTime date;
   final double amount;
-  final ExpenseCategory category;
+  final IncomeCategory category;
   final String description;
   final DateTime time;
-  const ExpenseCard(
+  const IncomeCard(
       {super.key,
       required this.title,
       required this.date,
@@ -42,13 +42,13 @@ class ExpenseCard extends StatelessWidget {
             height: 60,
             width: 60,
             decoration: BoxDecoration(
-              color: expenseCategoryColors[category]?.withOpacity(0.2),
+              color: incomeCategoryColors[category]?.withOpacity(0.2),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Image.asset(
-                expenceCategoryImages[category]!,
+                incomeCategoryImages[category]!,
                 height: 20,
                 width: 20,
                 //fit: BoxFit.cover,
@@ -86,11 +86,11 @@ class ExpenseCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                "-\$${amount.toStringAsFixed(2)}",
+                "+\$${amount.toStringAsFixed(2)}",
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: kRed,
+                  color: kGreen,
                 ),
               ),
               Text(
