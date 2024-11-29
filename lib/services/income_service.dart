@@ -53,19 +53,25 @@ class IncomeService {
     }
   }
 
-  //load the income from shared preferences
   Future<List<IncomeModel>> loadIncome() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String>? existingIncomes = prefs.getStringList(_incomeKey);
-
-    //Convert the existing income to List of IncomeModel object
     List<IncomeModel> loadedIncomes = [];
-
-    if (existingIncomes != null) {
-      loadedIncomes = existingIncomes
-          .map((e) => IncomeModel.formJSON(json.decode(e)))
-          .toList();
+    try {
+      // Retrieve the SharedPreferences instance
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      List<String>? existingIncomes = prefs.getStringList(_incomeKey);
+      debugPrint('Existing Incomes: $existingIncomes');
+      // Convert the existing income to a list of IncomeModel objects
+      if (existingIncomes != null) {
+        loadedIncomes = existingIncomes
+            .map((e) => IncomeModel.formJSON(json.decode(e)))
+            .toList();
+      }
+    } catch (error) {
+      // Log or handle the error
+      debugPrint('Error loading incomes: $error');
     }
+
+    // Return the loaded incomes (empty if an error occurred)
     return loadedIncomes;
   }
 

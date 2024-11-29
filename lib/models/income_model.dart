@@ -64,7 +64,7 @@ class IncomeModel {
         amount: json['amount'],
         category: IncomeCategory.values[json['category']],
         date: DateTime.parse(json['date']),
-        time: DateTime.parse(json['times']),
+        time: DateTime.parse(json['time']),
         description: json['description']);
   }
 }
