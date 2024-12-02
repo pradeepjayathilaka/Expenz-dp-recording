@@ -315,7 +315,7 @@ class _AddNewScreenState extends State<AddNewScreen> {
                             ),
                             Text(
                               DateFormat.yMMMd().format(_selectedDate),
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: kGrey,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
@@ -381,7 +381,7 @@ class _AddNewScreenState extends State<AddNewScreen> {
                             ),
                             Text(
                               DateFormat.jm().format(_selectedTime),
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: kGrey,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
@@ -392,7 +392,7 @@ class _AddNewScreenState extends State<AddNewScreen> {
                         const SizedBox(
                           height: 20,
                         ),
-                        Divider(
+                        const Divider(
                           color: kLightGrey,
                           thickness: 5,
                         ),

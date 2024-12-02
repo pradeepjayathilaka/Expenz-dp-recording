@@ -150,14 +150,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20),
                       LineChartSample(),
                     ],
                   ),
                 ),
                 //recent transactions
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: kDefaultPadding),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -185,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               : ListView.builder(
                                   shrinkWrap: true,
                                   scrollDirection: Axis.vertical,
-                                  physics: NeverScrollableScrollPhysics(),
+                                  physics: const NeverScrollableScrollPhysics(),
                                   itemCount: widget.expenseList.length,
                                   itemBuilder: (context, index) {
                                     final expense = widget.expenseList[index];
