@@ -23,7 +23,7 @@ class AddNewScreen extends StatefulWidget {
 }
 
 class _AddNewScreenState extends State<AddNewScreen> {
-  // State to track expense and income categories and toggle selection
+  // State to track expe3nse and income categories and toggle selection
   int _selectedMethode = 0;
   ExpenseCategory _expenseCategory = ExpenseCategory.health;
   IncomeCategory _incomeCategory = IncomeCategory.salary;
